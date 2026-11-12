@@ -8,5 +8,7 @@ window.LL_CONFIG = {
 
   email: "limlanguagell@gmail.com",
   instagramUrl: "https://www.instagram.com/limlanguage.unicamp/",
-  instagramHandle: "@limlanguage.unicamp"
+  instagramHandle: "@limlanguage.unicamp",
+  linkedinUrl: "https://www.linkedin.com/company/limlanguage",
+  whatsappUrl: "https://chat.whatsapp.com/EucPGHsAWTt2Jci1ZsTkTA"
 };

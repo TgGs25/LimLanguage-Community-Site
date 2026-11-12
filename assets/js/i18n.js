@@ -2,6 +2,16 @@
    Para mudar um texto, edite a linha com a mesma chave nos três idiomas. */
 window.LL_I18N = {
   pt: {
+    "how.rules": "Regras da comunidade",
+    "how.r1": "Respeito acima de tudo: nada de preconceito, ofensa ou piada que exclua alguém.",
+    "how.r2": "Nas salas de nível avançado, a conversa é só em inglês.",
+    "how.r3": "Sem spam: nada de propaganda, correntes ou divulgação sem combinar antes com a organização.",
+    "how.r4": "Dê espaço para todo mundo falar e escute com atenção.",
+    "how.r5": "Errar faz parte: ajude sem constranger.",
+    "how.r6": "Faça o check-in no encontro para a sua presença valer um carimbo.",
+    "contact.linkedin": "LinkedIn",
+    "contact.whatsapp": "Comunidade no WhatsApp",
+    "contact.whatsappOpen": "Entrar na comunidade do WhatsApp",
     "skip": "Ir para o conteúdo",
     "cta.join": "Entrar na comunidade",
     "common.newtab": " (abre em nova aba)",
@@ -50,7 +60,7 @@ window.LL_I18N = {
 
     "about.title": "O que somos",
     "about.h1": "O que somos",
-    "about.p1": "A LimLanguage é uma comunidade de prática de idiomas, sem fins lucrativos, criada em setembro de 2026 por estudantes de Limeira.",
+    "about.p1": "A LimLanguage é uma comunidade de prática de idiomas, sem fins lucrativos, criada em 2026 por estudantes de Limeira.",
     "about.p2": "Nos reunimos para conversar, trocar experiências e praticar idiomas, em atividades online e presenciais. Por enquanto o idioma é o inglês; mais idiomas virão.",
     "about.p3": "Somos independentes: a LimLanguage não é um projeto oficial da universidade.",
     "about.team": "Quem organiza",
@@ -165,6 +175,16 @@ window.LL_I18N = {
   },
 
   es: {
+    "how.rules": "Reglas de la comunidad",
+    "how.r1": "Respeto ante todo: nada de prejuicios, ofensas ni bromas que excluyan a alguien.",
+    "how.r2": "En las salas de nivel avanzado, la conversación es solo en inglés.",
+    "how.r3": "Sin spam: nada de publicidad, cadenas ni difusión sin acordarlo antes con la organización.",
+    "how.r4": "Deja espacio para que todas las personas hablen y escucha con atención.",
+    "how.r5": "Equivocarse es parte del proceso: ayuda sin avergonzar.",
+    "how.r6": "Haz el check-in en el encuentro para que tu asistencia valga un sello.",
+    "contact.linkedin": "LinkedIn",
+    "contact.whatsapp": "Comunidad en WhatsApp",
+    "contact.whatsappOpen": "Unirme a la comunidad de WhatsApp",
     "skip": "Ir al contenido",
     "cta.join": "Unirme a la comunidad",
     "common.newtab": " (se abre en una pestaña nueva)",
@@ -213,7 +233,7 @@ window.LL_I18N = {
 
     "about.title": "Quiénes somos",
     "about.h1": "Quiénes somos",
-    "about.p1": "LimLanguage es una comunidad de práctica de idiomas, sin fines de lucro, creada en septiembre de 2026 por estudiantes de Limeira.",
+    "about.p1": "LimLanguage es una comunidad de práctica de idiomas, sin fines de lucro, creada en 2026 por estudiantes de Limeira.",
     "about.p2": "Nos reunimos para conversar, intercambiar experiencias y practicar idiomas, en actividades en línea y presenciales. Por ahora el idioma es el inglés; vendrán más idiomas.",
     "about.p3": "Somos independientes: LimLanguage no es un proyecto oficial de la universidad.",
     "about.team": "Quién organiza",
@@ -328,6 +348,16 @@ window.LL_I18N = {
   },
 
   en: {
+    "how.rules": "Community rules",
+    "how.r1": "Respect above all: no prejudice, insults or jokes that exclude anyone.",
+    "how.r2": "In advanced-level rooms, conversation is English only.",
+    "how.r3": "No spam: no ads, chain messages or promotion without agreeing with the organizers first.",
+    "how.r4": "Make room for everyone to speak and listen carefully.",
+    "how.r5": "Mistakes are part of learning: help without embarrassing anyone.",
+    "how.r6": "Check in at the meetup so your attendance earns a stamp.",
+    "contact.linkedin": "LinkedIn",
+    "contact.whatsapp": "WhatsApp community",
+    "contact.whatsappOpen": "Join the WhatsApp community",
     "skip": "Skip to content",
     "cta.join": "Join the community",
     "common.newtab": " (opens in a new tab)",
@@ -376,7 +406,7 @@ window.LL_I18N = {
 
     "about.title": "About us",
     "about.h1": "About us",
-    "about.p1": "LimLanguage is a non-profit language practice community, created in September 2026 by students from Limeira.",
+    "about.p1": "LimLanguage is a non-profit language practice community, created in 2026 by students from Limeira.",
     "about.p2": "We meet to talk, share experiences and practice languages, in online and in-person activities. For now the language is English; more languages will come.",
     "about.p3": "We are independent: LimLanguage is not an official university project.",
     "about.team": "Who organizes",

@@ -3,12 +3,16 @@
     {
       "status": "done",
       "name": "Conversation II",
+      "date": "2026-09-10",
+      "time": "16:00 – 17:00",
       "language": "en",
       "place": "online"
     },
     {
       "status": "done",
       "name": "Conversation I",
+      "date": "2026-08-30",
+      "time": "10:00 – 11:00",
       "language": "en",
       "place": "online"
     }

@@ -19,7 +19,7 @@ Se esquecer uma vírgula ou aspas, o site não quebra: mostra a mensagem "Não f
   "status": "upcoming",
   "name": "Conversation III",
   "date": "2026-12-05",
-  "time": "19h",
+  "time": "19:00 – 20:00",
   "language": "en",
   "place": "online",
   "link": "https://meet.google.com/xxx-xxxx-xxx",
@@ -33,6 +33,8 @@ Se esquecer uma vírgula ou aspas, o site não quebra: mostra a mensagem "Não f
 {
   "status": "done",
   "name": "Conversation II",
+  "date": "2026-09-10",
+  "time": "16:00 – 17:00",
   "language": "en",
   "place": "online"
 }
@@ -45,11 +47,11 @@ Para marcar um evento como já realizado, troque `"upcoming"` por `"done"`.
 | Campo | Obrigatório | O que colocar |
 |---|---|---|
 | `status` | sim | `"upcoming"` (próximo) ou `"done"` (realizado) |
-| `name` | sim | Nome do evento |
+| `name` | sim | Nome do evento (igual ao da planilha de eventos e ao da opção do formulário de check-in) |
 | `language` | não | `"en"` (inglês), `"es"` (espanhol) ou `"pt"` (português). O site traduz o nome do idioma sozinho |
 | `place` | não | `"online"`, `"presencial"` ou o nome do lugar (ex.: `"Sala 12"`) |
 | `date` | não | No formato `ano-mês-dia`, ex.: `"2026-12-05"`. O site mostra a data por extenso no idioma do visitante |
-| `time` | não | Horário, ex.: `"19h"` |
+| `time` | não | Horário, ex.: `"19:00 – 20:00"` |
 | `link` | não | Link do encontro (só aparece em eventos próximos; precisa começar com `https://`) |
 | `description` | não | Uma frase curta |
 

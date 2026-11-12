@@ -159,7 +159,9 @@
           '<div><h2>' + esc(t("footer.contact")) + "</h2><ul>" +
             '<li><a href="mailto:' + mail + '">' + mail + "</a></li>" +
             '<li><a href="' + esc(CFG.instagramUrl || "#") + '" target="_blank" rel="noopener">' +
-              esc(CFG.instagramHandle || "Instagram") + '<span class="sr-only">' + esc(t("common.newtab")) + "</span></a></li></ul></div>" +
+              esc(CFG.instagramHandle || "Instagram") + '<span class="sr-only">' + esc(t("common.newtab")) + "</span></a></li>" +
+            '<li><a href="' + esc(CFG.linkedinUrl || "#") + '" target="_blank" rel="noopener">LinkedIn<span class="sr-only">' + esc(t("common.newtab")) + "</span></a></li>" +
+            '<li><a href="' + esc(CFG.whatsappUrl || "#") + '" target="_blank" rel="noopener">WhatsApp<span class="sr-only">' + esc(t("common.newtab")) + "</span></a></li></ul></div>" +
           '<div><h2>' + esc(t("footer.more")) + "</h2><ul>" +
             '<li><a href="carimbos.html">' + esc(t("stamps.title")) + "</a></li>" +
             '<li><a href="faq.html">' + esc(t("faq.title")) + "</a></li>" +
@@ -201,7 +203,29 @@
     // Links externos (Instagram etc.)
     root.querySelectorAll("[data-instagram]").forEach(function (a) {
       a.setAttribute("href", CFG.instagramUrl || "#");
+      a.setAttribute("target", "_blank");
+      a.setAttribute("rel", "noopener");
       a.textContent = (CFG.instagramHandle || "Instagram");
+      var s = document.createElement("span");
+      s.className = "sr-only";
+      s.textContent = t("common.newtab");
+      a.appendChild(s);
+    });
+    root.querySelectorAll("[data-linkedin]").forEach(function (a) {
+      a.setAttribute("href", CFG.linkedinUrl || "#");
+      a.setAttribute("target", "_blank");
+      a.setAttribute("rel", "noopener");
+      a.textContent = "LinkedIn";
+      var s = document.createElement("span");
+      s.className = "sr-only";
+      s.textContent = t("common.newtab");
+      a.appendChild(s);
+    });
+    root.querySelectorAll("[data-whatsapp]").forEach(function (a) {
+      a.setAttribute("href", CFG.whatsappUrl || "#");
+      a.setAttribute("target", "_blank");
+      a.setAttribute("rel", "noopener");
+      a.textContent = t(a.getAttribute("data-i18n") || "contact.whatsappOpen");
       var s = document.createElement("span");
       s.className = "sr-only";
       s.textContent = t("common.newtab");
