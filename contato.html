@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="pt-BR" data-title="contact.title" data-theme="brand">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contato</title>
+<meta name="description" content="Contato da LimLanguage: e-mail e Instagram.">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Special+Elite&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<script>try{var t=localStorage.getItem("ll-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+<script src="assets/js/config.js" defer></script>
+<script src="assets/js/i18n.js" defer></script>
+<script src="assets/js/app.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main" data-i18n="skip">Ir para o conteúdo</a>
+<header id="site-header"></header>
+<noscript><p class="wrap notice">Este site precisa de JavaScript para mostrar o conteúdo. / This site needs JavaScript to show its content.</p></noscript>
+<main id="main" tabindex="-1">
+<section class="section">
+  <div class="wrap">
+    <h1 data-i18n="contact.h1">Contato</h1>
+    <p class="lead" data-i18n="contact.lead">Fale com a gente por e-mail ou pelo Instagram.</p>
+    <div class="grid grid-2">
+      <div class="card">
+        <h2 data-i18n="contact.email">E-mail</h2>
+        <p class="email-text" data-email></p>
+        <div class="contact-line">
+          <button type="button" class="btn btn-primary btn-small" id="copy-email" data-i18n="contact.copy">Copiar e-mail</button>
+          <a class="btn btn-ghost btn-small" data-mailto href="#" data-i18n="contact.mailto">Abrir no app de e-mail</a>
+        </div>
+        <p class="copy-status" id="copy-status" role="status" aria-live="polite"></p>
+      </div>
+      <div class="card">
+        <h2 data-i18n="contact.insta">Instagram</h2>
+        <p><a data-instagram href="#">Instagram</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<footer id="site-footer"></footer>
+</body>
+</html>

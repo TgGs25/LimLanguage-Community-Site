@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="pt-BR" data-title="events.title" data-theme="brand">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Eventos</title>
+<meta name="description" content="Agenda de próximos encontros e eventos já realizados da LimLanguage.">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Special+Elite&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<script>try{var t=localStorage.getItem("ll-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+<script src="assets/js/config.js" defer></script>
+<script src="assets/js/i18n.js" defer></script>
+<script src="assets/js/app.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main" data-i18n="skip">Ir para o conteúdo</a>
+<header id="site-header"></header>
+<noscript><p class="wrap notice">Este site precisa de JavaScript para mostrar o conteúdo. / This site needs JavaScript to show its content.</p></noscript>
+<main id="main" tabindex="-1">
+<section class="section">
+  <div class="wrap">
+    <h1 data-i18n="events.h1">Eventos</h1>
+    <p class="lead" data-i18n="events.lead">Encontros de prática de idiomas. Também divulgamos tudo no Instagram.</p>
+    <div class="tabs" role="tablist" data-i18n-attr="aria-label:events.tabs" aria-label="Tipo de evento">
+      <button type="button" role="tab" id="tab-next" aria-controls="panel-next" aria-selected="true" data-hash="proximos" data-i18n="events.tabNext">Próximos</button>
+      <button type="button" role="tab" id="tab-done" aria-controls="panel-done" aria-selected="false" tabindex="-1" data-hash="realizados" data-i18n="events.tabDone">Realizados</button>
+    </div>
+    <div role="tabpanel" id="panel-next" aria-labelledby="tab-next" data-events="upcoming"></div>
+    <div role="tabpanel" id="panel-done" aria-labelledby="tab-done" data-events="done" hidden></div>
+  </div>
+</section>
+<section class="cta-band" aria-labelledby="band-h">
+  <div class="wrap">
+    <h2 id="band-h" data-i18n="band.h2">Pronto para praticar?</h2>
+    <p data-i18n="band.p">Entre na comunidade e venha ao próximo encontro.</p>
+    <a class="btn btn-primary" data-cta data-i18n="cta.join" href="participar.html">Entrar na comunidade</a>
+  </div>
+</section>
+</main>
+<footer id="site-footer"></footer>
+</body>
+</html>
