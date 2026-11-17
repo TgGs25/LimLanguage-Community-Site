@@ -9,7 +9,7 @@
   var LANGS = ["pt", "es", "en"];
   var THEMES = ["brand", "rg", "hc"];
   var HTML_LANG = { pt: "pt-BR", es: "es", en: "en" };
-  var state = { lang: "pt", theme: "brand", events: null, eventsFailed: false };
+  var state = { lang: "pt", theme: "brand", events: null, eventsFailed: false, notes: [] };
 
   /* ---------- utilidades ---------- */
   function store(k, v) { try { localStorage.setItem(k, v); } catch (e) { /* ok */ } }
@@ -29,7 +29,8 @@
   }
 
   function isExternalForm() { return !!(CFG.formUrl && String(CFG.formUrl).trim()); }
-  function ctaHref() { return isExternalForm() ? CFG.formUrl : "participar.html"; }
+  function ctaHref() { return "participar.html"; }   // os botões "Entrar na comunidade" passam sempre pela explicação
+  function formHref() { return isExternalForm() ? CFG.formUrl : "participar.html"; }
 
   function currentPage() {
     var p = location.pathname.split("/").pop();
@@ -112,7 +113,6 @@
           esc(t("theme." + n)) + "</option>";
       }).join("");
 
-      var ext = isExternalForm();
       header.className = "site-header";
       header.innerHTML =
         '<div class="airmail-bar" aria-hidden="true"></div>' +
@@ -126,9 +126,7 @@
         '<div class="main-bar"><div class="wrap">' +
           '<a class="brand" href="index.html" aria-label="' + esc(t("brand.home")) + '">' + LOGO +
             '<span class="brand-name">LimLanguage</span></a>' +
-          '<a class="btn btn-primary btn-small" id="header-cta" href="' + esc(ctaHref()) + '"' +
-            (ext ? ' target="_blank" rel="noopener"' : "") + ">" + esc(t("cta.join")) +
-            (ext ? '<span class="sr-only">' + esc(t("common.newtab")) + "</span>" : "") + "</a>" +
+          '<a class="btn btn-primary btn-small" id="header-cta" href="' + esc(ctaHref()) + '">' + esc(t("cta.join")) + "</a>" +
           '<button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="site-nav">' +
             esc(t("nav.menu")) + "</button>" +
           '<nav class="site-nav" id="site-nav" aria-label="' + esc(t("nav.label")) + '"><ul>' + links + "</ul></nav>" +
@@ -159,9 +157,9 @@
           '<div><h2>' + esc(t("footer.contact")) + "</h2><ul>" +
             '<li><a href="mailto:' + mail + '">' + mail + "</a></li>" +
             '<li><a href="' + esc(CFG.instagramUrl || "#") + '" target="_blank" rel="noopener">' +
-              esc(CFG.instagramHandle || "Instagram") + '<span class="sr-only">' + esc(t("common.newtab")) + "</span></a></li>" +
+              "Instagram" + '<span class="sr-only">' + esc(t("common.newtab")) + "</span></a></li>" +
             '<li><a href="' + esc(CFG.linkedinUrl || "#") + '" target="_blank" rel="noopener">LinkedIn<span class="sr-only">' + esc(t("common.newtab")) + "</span></a></li>" +
-            '<li><a href="' + esc(CFG.whatsappUrl || "#") + '" target="_blank" rel="noopener">WhatsApp<span class="sr-only">' + esc(t("common.newtab")) + "</span></a></li></ul></div>" +
+            "</ul></div>" +
           '<div><h2>' + esc(t("footer.more")) + "</h2><ul>" +
             '<li><a href="carimbos.html">' + esc(t("stamps.title")) + "</a></li>" +
             '<li><a href="faq.html">' + esc(t("faq.title")) + "</a></li>" +
@@ -183,19 +181,22 @@
       });
     });
 
-    // Botões "Entrar na comunidade" dentro das páginas
+    // Botões "Entrar na comunidade": levam à página "Como participar" (explicação antes do formulário)
     root.querySelectorAll("[data-cta]").forEach(function (a) {
-      var key = a.getAttribute("data-i18n") || "cta.join";
-      a.textContent = t(key);
+      a.textContent = t(a.getAttribute("data-i18n") || "cta.join");
       a.setAttribute("href", ctaHref());
+    });
+
+    // Botão da página "Como participar": é o único que abre o formulário (em nova aba)
+    root.querySelectorAll("[data-form]").forEach(function (a) {
+      var label = t(a.getAttribute("data-i18n") || "join.open");
+      a.setAttribute("href", formHref());
       if (isExternalForm()) {
         a.setAttribute("target", "_blank");
         a.setAttribute("rel", "noopener");
-        var s = document.createElement("span");
-        s.className = a.hasAttribute("data-visible-newtab") ? "" : "sr-only";
-        s.textContent = t("common.newtab");
-        a.appendChild(s);
+        a.textContent = label + t("common.newtab");   // um só texto, para não quebrar em duas colunas no botão
       } else {
+        a.textContent = label;
         a.removeAttribute("target");
       }
     });
@@ -205,7 +206,7 @@
       a.setAttribute("href", CFG.instagramUrl || "#");
       a.setAttribute("target", "_blank");
       a.setAttribute("rel", "noopener");
-      a.textContent = (CFG.instagramHandle || "Instagram");
+      a.textContent = "Instagram";
       var s = document.createElement("span");
       s.className = "sr-only";
       s.textContent = t("common.newtab");
@@ -216,16 +217,6 @@
       a.setAttribute("target", "_blank");
       a.setAttribute("rel", "noopener");
       a.textContent = "LinkedIn";
-      var s = document.createElement("span");
-      s.className = "sr-only";
-      s.textContent = t("common.newtab");
-      a.appendChild(s);
-    });
-    root.querySelectorAll("[data-whatsapp]").forEach(function (a) {
-      a.setAttribute("href", CFG.whatsappUrl || "#");
-      a.setAttribute("target", "_blank");
-      a.setAttribute("rel", "noopener");
-      a.textContent = t(a.getAttribute("data-i18n") || "contact.whatsappOpen");
       var s = document.createElement("span");
       s.className = "sr-only";
       s.textContent = t("common.newtab");
@@ -246,17 +237,66 @@
   }
 
   /* ---------- eventos ---------- */
+  function pad2(n) { return (n < 10 ? "0" : "") + n; }
+  function todayISO() {
+    var d = new Date();
+    return d.getFullYear() + "-" + pad2(d.getMonth() + 1) + "-" + pad2(d.getDate());
+  }
+
   function loadEvents() {
     return fetch("data/events.json", { cache: "no-cache" })
       .then(function (r) { if (!r.ok) throw new Error("http " + r.status); return r.json(); })
       .then(function (json) {
         var list = Array.isArray(json) ? json : json && json.events;
         if (!Array.isArray(list)) throw new Error("formato");
-        state.events = list.filter(function (e) {
-          return e && typeof e.name === "string" && e.name.trim() && (e.status === "upcoming" || e.status === "done");
+        var today = todayISO();
+        state.notes = [];
+        state.events = [];
+        list.forEach(function (e, i) {
+          if (!e || typeof e.name !== "string" || !e.name.trim()) {
+            state.notes.push("Evento nº " + (i + 1) + " ignorado: falta o campo \"name\" (nome do evento).");
+            return;
+          }
+          if (e.status !== "upcoming" && e.status !== "done") {
+            state.notes.push("Evento \"" + e.name + "\" ignorado: o campo \"status\" precisa ser \"upcoming\" ou \"done\" (está " + JSON.stringify(e.status) + ").");
+            return;
+          }
+          var c = {};
+          for (var k in e) { if (Object.prototype.hasOwnProperty.call(e, k)) c[k] = e[k]; }
+          if (c.date && !/^\d{4}-\d{2}-\d{2}$/.test(c.date)) {
+            state.notes.push("Evento \"" + c.name + "\": a data \"" + c.date + "\" não está no formato ano-mês-dia (ex.: 2026-12-05); o evento aparece sem data.");
+          } else if (c.status === "upcoming" && c.date && c.date < today) {
+            // a data já passou: o evento vai sozinho para "Realizados"
+            c.status = "done";
+            state.notes.push("Evento \"" + c.name + "\": a data " + c.date + " já passou, então ele aparece em \"Realizados\" (não precisa trocar o status).");
+          }
+          state.events.push(c);
         });
       })
-      .catch(function () { state.eventsFailed = true; state.events = []; });
+      .catch(function () {
+        state.eventsFailed = true;
+        state.events = [];
+        state.notes = ["Não foi possível ler data/events.json. Confira vírgulas, aspas e chaves do arquivo."];
+      });
+  }
+
+  /* Aviso para a equipe: abra o site com ?checar=1 no final do endereço (ex.: eventos.html?checar=1) */
+  function renderCheck() {
+    var old = document.getElementById("ll-check");
+    if (old) old.parentNode.removeChild(old);
+    if (!/[?&]checar=1(&|$)/.test(location.search)) return;
+    var main = document.getElementById("main");
+    if (!main) return;
+    var box = document.createElement("div");
+    box.id = "ll-check";
+    box.className = "wrap notice";
+    box.setAttribute("role", "status");
+    var notes = state.notes || [];
+    box.innerHTML = "<strong>Verificação da agenda (só para a equipe)</strong>" +
+      (notes.length
+        ? "<ul>" + notes.map(function (n) { return "<li>" + esc(n) + "</li>"; }).join("") + "</ul>"
+        : "<p>Nenhum problema encontrado em data/events.json.</p>");
+    main.insertBefore(box, main.firstChild);
   }
 
   function formatDate(iso) {
@@ -406,7 +446,7 @@
     initTabs();
     initCopy();
     if (document.querySelector("[data-events]")) {
-      loadEvents().then(renderEvents);
+      loadEvents().then(function () { renderEvents(); renderCheck(); });
     }
   }
 

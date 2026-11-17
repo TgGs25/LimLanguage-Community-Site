@@ -42,6 +42,12 @@ Se esquecer uma vírgula ou aspas, o site não quebra: mostra a mensagem "Não f
 
 Para marcar um evento como já realizado, troque `"upcoming"` por `"done"`.
 
+**Atenção:** um evento `"upcoming"` com `date` já passada vai sozinho para "Realizados" no site (o evento de hoje continua em "Próximos" até o dia seguinte). Mesmo assim, é boa prática trocar para `"done"`.
+
+## Conferir depois de salvar
+
+Abra o site com `?checar=1` no final do endereço (por exemplo, `eventos.html?checar=1`). Aparece uma caixa, só para quem usa esse endereço, listando os eventos que foram **ignorados** por erro (nome faltando, `status` escrito errado) e os que foram movidos para "Realizados" pela data. Se o arquivo todo estiver com erro de vírgula ou aspas, a caixa também avisa.
+
 ## Campos
 
 | Campo | Obrigatório | O que colocar |

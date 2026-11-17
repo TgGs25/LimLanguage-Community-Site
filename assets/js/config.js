@@ -2,13 +2,11 @@
    Mexa só no que está entre aspas. */
 window.LL_CONFIG = {
   // Link PÚBLICO do formulário "Cadastro de Membros".
-  // Enquanto estiver vazio, os botões "Entrar na comunidade" levam à página "Como participar",
-  // que mostra um aviso de que o link ainda não foi configurado.
-  formUrl: "",
+  // Os botões "Entrar na comunidade" levam à página "Como participar"; só o botão dessa página abre este formulário.
+  // Enquanto estiver vazio, a página "Como participar" mostra um aviso para a equipe.
+  formUrl: "https://docs.google.com/forms/d/e/1FAIpQLSfxe25Dlq4HflCWEKuxSSHjn_8-PtgJpA8253RRtjP35dgdgw/viewform",
 
   email: "limlanguagell@gmail.com",
   instagramUrl: "https://www.instagram.com/limlanguage.unicamp/",
-  instagramHandle: "@limlanguage.unicamp",
-  linkedinUrl: "https://www.linkedin.com/company/limlanguage",
-  whatsappUrl: "https://chat.whatsapp.com/EucPGHsAWTt2Jci1ZsTkTA"
+  linkedinUrl: "https://www.linkedin.com/company/limlanguage"
 };
