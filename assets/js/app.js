@@ -84,193 +84,171 @@
 
   /* ---------- cabeçalho e rodapé ---------- */
   
- var NAV = [
-    ["o-que-somos.html", "nav.about"],
-    ["como-funciona.html", "nav.how"],
-    ["eventos.html", "nav.events"],
-    ["parcerias.html", "nav.partners"],
-    ["contato.html", "nav.contact"]
-  ];
-  var EXTRA_PAGES = [
-    ["index.html", "brand.home"],
-    ["carimbos.html", "stamps.title"],
-    ["participar.html", "join.title"],
-    ["faq.html", "faq.title"]
-  ];
+var NAV = [
+  ["o-que-somos.html", "nav.about"],
+  ["como-funciona.html", "nav.how"],
+  ["eventos.html", "nav.events"],
+  ["parcerias.html", "nav.partners"],
+  ["contato.html", "nav.contact"]
+];
+var EXTRA_PAGES = [
+  ["index.html", "brand.home"],
+  ["carimbos.html", "stamps.title"],
+  ["participar.html", "join.title"],
+  ["faq.html", "faq.title"]
+];
 
-  function renderChrome() {
-    var page = currentPage();
-    var header = document.getElementById("site-header");
-    var footer = document.getElementById("site-footer");
-
-    if (header) {
-      var links = NAV.map(function (n) {
-        var cur = n[0] === page ? ' aria-current="page"' : "";
-        return '<li><a href="' + n[0] + '"' + cur + ">" + esc(t(n[1])) + "</a></li>";
-      }).join("");
+function iconSVG(paths) {
+  return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + paths + "</svg>";
+}
 
 var PAGE_ICONS = {
-  "index.html":
-    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
-      '<path d="M3 10.5L12 3l9 7.5"/><path d="M5 9.5V20h14V9.5"/>' +
-    '</svg>',
-  "o-que-somos.html":
-    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
-      '<circle cx="12" cy="12" r="9"/><path d="M12 16v-4"/><path d="M12 8h.01"/>' +
-    '</svg>',
-  "como-funciona.html":
-    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
-      '<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>' +
-    '</svg>',
-  "eventos.html":
-    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
-      '<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/>' +
-    '</svg>',
-  "parcerias.html":
-    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
-      '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>' +
-    '</svg>',
-  "contato.html":
-    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
-      '<rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>' +
-    '</svg>',
-  "carimbos.html":
-    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
-      '<circle cx="12" cy="8" r="5"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>' +
-    '</svg>',
-  "participar.html":
-    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
-      '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/>' +
-    '</svg>',
-  "faq.html":
-    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
-      '<circle cx="12" cy="12" r="9"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/>' +
-    '</svg>'
+  "index.html": iconSVG('<path d="M3 10.5L12 3l9 7.5"/><path d="M5 9.5V20h14V9.5"/>'),
+  "o-que-somos.html": iconSVG('<circle cx="12" cy="12" r="9"/><path d="M12 16v-4"/><path d="M12 8h.01"/>'),
+  "como-funciona.html": iconSVG('<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>'),
+  "eventos.html": iconSVG('<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/>'),
+  "parcerias.html": iconSVG('<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>'),
+  "contato.html": iconSVG('<rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>'),
+  "carimbos.html": iconSVG('<circle cx="12" cy="8" r="5"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>'),
+  "participar.html": iconSVG('<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/>'),
+  "faq.html": iconSVG('<circle cx="12" cy="12" r="9"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/>')
 };
 
-var fallbackPageIconSVG =
-  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
-    '<circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/>' +
-  '</svg>';
+function renderChrome() {
+  var page = currentPage();
+  var header = document.getElementById("site-header");
+  var footer = document.getElementById("site-footer");
 
-var allLinks = [EXTRA_PAGES[0]].concat(NAV, EXTRA_PAGES.slice(1)).map(function (n) {
-  var cur = n[0] === page ? ' aria-current="page"' : "";
-  var label = t(n[1]).replace(/^LimLanguage,\s*/i, "");
-  label = label.charAt(0).toUpperCase() + label.slice(1);
-  var icon = PAGE_ICONS[n[0]] || fallbackPageIconSVG;
-  return '<li><a href="' + n[0] + '"' + cur + ">" + icon + "<span>" + esc(label) + "</span></a></li>";
-}).join("");
+  if (header) {
+    var links = NAV.map(function (n) {
+      var cur = n[0] === page ? ' aria-current="page"' : "";
+      return '<li><a href="' + n[0] + '"' + cur + ">" + esc(t(n[1])) + "</a></li>";
+    }).join("");
 
-      var listIconSVG = '<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">' +
-        [5, 10, 15, 20].map(function (y) {
-          return '<circle cx="4" cy="' + y + '" r="1.8"/><rect x="8" y="' + (y - 1.5) + '" width="13" height="3" rx="1.5"/>';
-        }).join("") + "</svg>";
+    var allLinks = [EXTRA_PAGES[0]].concat(NAV, EXTRA_PAGES.slice(1)).map(function (n) {
+      var cur = n[0] === page ? ' aria-current="page"' : "";
+      var label = t(n[1]).replace(/^LimLanguage,\s*/i, "");
+      label = label.charAt(0).toUpperCase() + label.slice(1);
+      return '<li><a href="' + n[0] + '"' + cur + ">" + (PAGE_ICONS[n[0]] || "") + "<span>" + esc(label) + "</span></a></li>";
+    }).join("");
 
-      var langBtns = LANGS.map(function (c) {
-        var names = { pt: "Português", es: "Español", en: "English" };
-        return '<button type="button" data-lang="' + c + '" lang="' + c + '" aria-label="' + names[c] +
-          '" aria-pressed="' + (state.lang === c) + '">' + c.toUpperCase() + "</button>";
-      }).join("");
+    var listIconSVG = '<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">' +
+      [5, 10, 15, 20].map(function (y) {
+        return '<circle cx="4" cy="' + y + '" r="1.8"/><rect x="8" y="' + (y - 1.5) + '" width="13" height="3" rx="1.5"/>';
+      }).join("") + "</svg>";
 
-      var themeOpts = THEMES.map(function (n) {
-        return '<option value="' + n + '"' + (state.theme === n ? " selected" : "") + ">" +
-          esc(t("theme." + n)) + "</option>";
-      }).join("");
+    var langBtns = LANGS.map(function (c) {
+      var names = { pt: "Português", es: "Español", en: "English" };
+      return '<button type="button" data-lang="' + c + '" lang="' + c + '" aria-label="' + names[c] +
+        '" aria-pressed="' + (state.lang === c) + '">' + c.toUpperCase() + "</button>";
+    }).join("");
 
-      header.className = "site-header";
-      header.innerHTML =
-        '<div class="airmail-bar" aria-hidden="true"></div>' +
-        '<div class="util-bar"><div class="wrap">' +
-          '<div class="util-group" role="group" aria-label="' + esc(t("util.lang")) + '">' +
-            '<span class="util-label" aria-hidden="true">' + esc(t("util.lang")) + '</span>' +
-            '<div class="lang-switch">' + langBtns + "</div></div>" +
-          '<div class="util-group"><label class="util-label" for="theme-select">' + esc(t("util.theme")) + "</label>" +
-            '<select class="theme-select" id="theme-select">' + themeOpts + "</select></div>" +
-        "</div></div>" +
-        '<div class="main-bar"><div class="wrap">' +
-          '<div class="menu-paginas" id="menu-paginas">' +
-            '<button type="button" class="btn-lista" id="btn-lista-paginas" aria-label="Todas as páginas" aria-expanded="false">' +
-              listIconSVG +
-            "</button>" +
-            '<ul class="dropdown-paginas" id="dropdown-paginas">' + allLinks + "</ul>" +
-          "</div>" +
-          '<a class="brand" href="index.html" aria-label="' + esc(t("brand.home")) + '">' + LOGO +
-            '<span class="brand-name">LimLanguage</span></a>' +
-          '<a class="btn btn-primary btn-small" id="header-cta" href="' + esc(ctaHref()) + '">' + esc(t("cta.join")) + "</a>" +
-          '<button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="site-nav">' +
-            esc(t("nav.menu")) + "</button>" +
-          '<nav class="site-nav" id="site-nav" aria-label="' + esc(t("nav.label")) + '"><ul>' + links + "</ul></nav>" +
-        "</div></div>";
+    var themeOpts = THEMES.map(function (n) {
+      return '<option value="' + n + '"' + (state.theme === n ? " selected" : "") + ">" +
+        esc(t("theme." + n)) + "</option>";
+    }).join("");
 
-    
-      header.querySelectorAll("[data-lang]").forEach(function (b) {
-        b.addEventListener("click", function () { setLang(b.getAttribute("data-lang")); });
-      });
-      document.getElementById("theme-select").addEventListener("change", function (e) { setTheme(e.target.value); });
-      var toggle = document.getElementById("nav-toggle");
-      var nav = document.getElementById("site-nav");
-      toggle.addEventListener("click", function () {
-        var open = nav.classList.toggle("open");
-        toggle.setAttribute("aria-expanded", String(open));
-      });
-      nav.addEventListener("click", function (e) {
-        if (e.target.tagName === "A") { nav.classList.remove("open"); toggle.setAttribute("aria-expanded", "false"); }
-      });
-
-      var btnLista = document.getElementById("btn-lista-paginas");
-      var dropPaginas = document.getElementById("dropdown-paginas");
-      var menuPaginas = document.getElementById("menu-paginas");
-      var timerMenu;
-      var fixado = false;
-
-      btnLista.addEventListener("click", function (e) {
-        e.stopPropagation();
-        fixado = !fixado;
-        dropPaginas.classList.toggle("ativo", fixado);
-        btnLista.setAttribute("aria-expanded", String(fixado));
-      });
-
-      menuPaginas.addEventListener("mouseenter", function () {
-        clearTimeout(timerMenu);
-        dropPaginas.classList.add("ativo");
-      });
-
-      menuPaginas.addEventListener("mouseleave", function () {
-        if (fixado) return; // Se foi aberto por clique, não fecha ao tirar o mouse
-        timerMenu = setTimeout(function () {
-          dropPaginas.classList.remove("ativo");
-          btnLista.setAttribute("aria-expanded", "false");
-        }, 150);
-      });
-
-      document.addEventListener("click", function () {
-        fixado = false;
-        dropPaginas.classList.remove("ativo");
-        btnLista.setAttribute("aria-expanded", "false");
-      });
-    }
-
-    if (footer) {
-      footer.className = "site-footer";
-      var mail = esc(CFG.email || "");
-      footer.innerHTML =
-        '<div class="wrap">' +
-        '<div class="footer-cols">' +
-          '<div><h2>' + esc(t("footer.about")) + "</h2><p>" + esc(t("footer.tag")) + "</p></div>" +
-          '<div><h2>' + esc(t("footer.contact")) + "</h2><ul>" +
-            '<li><a href="mailto:' + mail + '">' + mail + "</a></li>" +
-            '<li><a href="' + esc(CFG.instagramUrl || "#") + '" target="_blank" rel="noopener">' +
-              "Instagram" + '<span class="sr-only">' + esc(t("common.newtab")) + "</span></a></li>" +
-            '<li><a href="' + esc(CFG.linkedinUrl || "#") + '" target="_blank" rel="noopener">LinkedIn<span class="sr-only">' + esc(t("common.newtab")) + "</span></a></li>" +
-            "</ul></div>" +
-          '<div><h2>' + esc(t("footer.more")) + "</h2><ul>" +
-            '<li><a href="carimbos.html">' + esc(t("stamps.title")) + "</a></li>" +
-            '<li><a href="faq.html">' + esc(t("faq.title")) + "</a></li>" +
-            '<li><a href="participar.html">' + esc(t("join.title")) + "</a></li></ul></div>" +
+    header.className = "site-header";
+    header.innerHTML =
+      '<div class="airmail-bar" aria-hidden="true"></div>' +
+      '<div class="util-bar"><div class="wrap">' +
+        '<div class="util-group" role="group" aria-label="' + esc(t("util.lang")) + '">' +
+          '<span class="util-label" aria-hidden="true">' + esc(t("util.lang")) + '</span>' +
+          '<div class="lang-switch">' + langBtns + "</div></div>" +
+        '<div class="util-group"><label class="util-label" for="theme-select">' + esc(t("util.theme")) + "</label>" +
+          '<select class="theme-select" id="theme-select">' + themeOpts + "</select></div>" +
+      "</div></div>" +
+      '<div class="main-bar"><div class="wrap">' +
+        '<div class="menu-paginas" id="menu-paginas">' +
+          '<button type="button" class="btn-lista" id="btn-lista-paginas" aria-label="Todas as páginas" aria-expanded="false">' +
+            listIconSVG +
+          "</button>" +
+          '<ul class="dropdown-paginas" id="dropdown-paginas"></ul>' +
         "</div>" +
-        '<p class="indep">' + esc(t("footer.indep")) + "</p></div>";
+        '<a class="brand" href="index.html" aria-label="' + esc(t("brand.home")) + '">' + LOGO +
+          '<span class="brand-name">LimLanguage</span></a>' +
+        '<a class="btn btn-primary btn-small" id="header-cta" href="' + esc(ctaHref()) + '">' + esc(t("cta.join")) + "</a>" +
+        '<button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="site-nav">' +
+          esc(t("nav.menu")) + "</button>" +
+        '<nav class="site-nav" id="site-nav" aria-label="' + esc(t("nav.label")) + '"><ul>' + links + "</ul></nav>" +
+      "</div></div>";
+
+    header.querySelectorAll("[data-lang]").forEach(function (b) {
+      b.addEventListener("click", function () { setLang(b.getAttribute("data-lang")); });
+    });
+    document.getElementById("theme-select").addEventListener("change", function (e) { setTheme(e.target.value); });
+
+    var toggle = document.getElementById("nav-toggle");
+    var nav = document.getElementById("site-nav");
+    toggle.addEventListener("click", function () {
+      var open = nav.classList.toggle("open");
+      toggle.setAttribute("aria-expanded", String(open));
+    });
+    nav.addEventListener("click", function (e) {
+      if (e.target.tagName === "A") { nav.classList.remove("open"); toggle.setAttribute("aria-expanded", "false"); }
+    });
+
+    var btnLista = document.getElementById("btn-lista-paginas");
+    var dropPaginas = document.getElementById("dropdown-paginas");
+    var backdrop = document.getElementById("backdrop-paginas") || (function () {
+      var el = document.createElement("div");
+      el.id = "backdrop-paginas";
+      el.className = "backdrop-paginas";
+      document.body.appendChild(el);
+      return el;
+    })();
+
+    if (dropPaginas.parentElement !== document.body) {
+      document.body.appendChild(dropPaginas);
     }
+
+    dropPaginas.innerHTML =
+      '<li class="drawer-paginas-topo"><span>Páginas</span>' +
+      '<button type="button" class="btn-fechar-drawer" id="btn-fechar-paginas" aria-label="Fechar">&times;</button></li>' +
+      allLinks;
+
+    function setDrawer(aberto) {
+      dropPaginas.classList.toggle("ativo", aberto);
+      backdrop.classList.toggle("ativo", aberto);
+      btnLista.setAttribute("aria-expanded", String(aberto));
+    }
+
+    btnLista.addEventListener("click", function (e) {
+      e.stopPropagation();
+      setDrawer(!dropPaginas.classList.contains("ativo"));
+    });
+    document.getElementById("btn-fechar-paginas").addEventListener("click", function () { setDrawer(false); });
+    backdrop.addEventListener("click", function () { setDrawer(false); });
+    dropPaginas.addEventListener("click", function (e) {
+      var a = e.target.closest("a");
+      if (a) {
+        setDrawer(false);
+        window.location.href = a.getAttribute("href");
+      }
+    });
   }
+
+  if (footer) {
+    footer.className = "site-footer";
+    var mail = esc(CFG.email || "");
+    footer.innerHTML =
+      '<div class="wrap">' +
+      '<div class="footer-cols">' +
+        '<div><h2>' + esc(t("footer.about")) + "</h2><p>" + esc(t("footer.tag")) + "</p></div>" +
+        '<div><h2>' + esc(t("footer.contact")) + "</h2><ul>" +
+          '<li><a href="mailto:' + mail + '">' + mail + "</a></li>" +
+          '<li><a href="' + esc(CFG.instagramUrl || "#") + '" target="_blank" rel="noopener">' +
+            "Instagram" + '<span class="sr-only">' + esc(t("common.newtab")) + "</span></a></li>" +
+          '<li><a href="' + esc(CFG.linkedinUrl || "#") + '" target="_blank" rel="noopener">LinkedIn<span class="sr-only">' + esc(t("common.newtab")) + "</span></a></li>" +
+          "</ul></div>" +
+        '<div><h2>' + esc(t("footer.more")) + "</h2><ul>" +
+          '<li><a href="carimbos.html">' + esc(t("stamps.title")) + "</a></li>" +
+          '<li><a href="faq.html">' + esc(t("faq.title")) + "</a></li>" +
+          '<li><a href="participar.html">' + esc(t("join.title")) + "</a></li></ul></div>" +
+      "</div>" +
+      '<p class="indep">' + esc(t("footer.indep")) + "</p></div>";
+  }
+}
 
   /* ---------- textos estáticos ---------- */
   function applyI18n(root) {
